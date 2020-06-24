@@ -1,0 +1,17 @@
+version: '3'  # requires Docker Compose 1.13 or later
+
+services:
+  rabbitmq:
+    image: 'rabbitmq:3.6-management-alpine'
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      # The standard AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    volumes:
+     - ./volumes/rabbitmq:/var/lib/rabbitmq/mnesia
+    environment:
+     - RABBITMQ_DEFAULT_USER=admin
+     - RABBITMQ_DEFAULT_PASS=admin123synbus

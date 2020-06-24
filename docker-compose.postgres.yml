@@ -1,0 +1,32 @@
+version: '3'
+
+services:    
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: api
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    networks:
+      - pg_network
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    ports:
+      - 15432:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root
+      PGADMIN_DEFAULT_PASSWORD: root
+    networks:
+      - pg_network
+
+networks: 
+    pg_network:
+      driver: bridge
