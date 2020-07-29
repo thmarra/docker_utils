@@ -5,6 +5,7 @@ services:
     image: 'rabbitmq:3.6-management-alpine'
     container_name: rabbitmq
     hostname: rabbitmq
+    restart: unless-stopped
     ports:
       # The standard AMQP protocol port
       - '5672:5672'
